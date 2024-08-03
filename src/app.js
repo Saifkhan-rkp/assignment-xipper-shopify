@@ -1,6 +1,7 @@
 const express = require('express');
 const router = require('./routes/router');
 const morgan = require('morgan');
+const securityMiddleware = require('./middlewares/security.middleware');
 
 
 
@@ -15,6 +16,7 @@ process.on('unhandledRejection',(reason)=>{
 
 
 // middlewares
+securityMiddleware(app);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

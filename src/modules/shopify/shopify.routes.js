@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const webhookRouter = require('./webhook.route');
 
+// ngrok http --domain=obviously-known-sheepdog.ngrok-free.app 80
+
 router.get("/shopify/test/:data", (req, res) => {
     try {
         const data = req.params.data;
@@ -13,5 +15,5 @@ router.get("/shopify/test/:data", (req, res) => {
     }
 });
 
-router.use(webhookRouter);
+router.use("/shopify-wh", webhookRouter);
 module.exports = router;

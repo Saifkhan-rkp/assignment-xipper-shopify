@@ -2,7 +2,12 @@ const redirect = require('./webhook.controller');
 
 const router = require('express').Router();
 
-router.post("/webhook/create-order", redirect)
-router.post("/webhook/update-order", redirect)
+// Order
+router.post("/create-order", redirect);
+router.post("/update-order", redirect);
+
+//customer
+router.post("/customer/create", redirect);
+
 
 module.exports = router
