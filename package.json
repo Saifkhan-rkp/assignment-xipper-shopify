@@ -1,0 +1,26 @@
+{
+  "name": "xipper-shopify",
+  "version": "1.0.0",
+  "description": "assignment given by xipper to integrate shopify ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "shopify",
+    "api",
+    "assignmnent"
+  ],
+  "author": "Saif Khan",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
