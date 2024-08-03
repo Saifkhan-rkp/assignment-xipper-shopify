@@ -1,6 +1,6 @@
 require('dotenv').config();
 //Database Connection
-require('./utils/db_connections');
+require('./utils/db_connection');
 
 const http = require('http');
 const app = require('./App');
