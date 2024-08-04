@@ -32,7 +32,7 @@ const shippingLineSchema = new mongoose.Schema({
     source: String,
     phone: { type: String, default: null },
     discounted_price: { type: Number },
-    code: { type: Number, default: null }
+    code: { type: String, default: null }
 });
 
 const OrderSchema = new mongoose.Schema({
