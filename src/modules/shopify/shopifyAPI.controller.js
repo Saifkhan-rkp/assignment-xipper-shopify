@@ -2,7 +2,6 @@ require('@shopify/shopify-api/adapters/node');
 const { shopifyApi, ApiVersion, } = require("@shopify/shopify-api");
 const { restResources } = require('@shopify/shopify-api/rest/admin/2023-04');
 const catchAsync = require("../../utils/catchAsync");
-const { createCustomer } = require('../customers/customer.service');
 
 
 // shopify.apiPermission.delete()
@@ -24,7 +23,7 @@ const getOrderDetails = catchAsync(async (req, res) => {
     // const client = 
     const order = await shopify.rest.Order.find({session, id});
     // console.log("printing this", order)
-    res.send(order);
+    res.status(200).send(order);
 });
 
 const getCustomerDetails = catchAsync(async (req, res) => {
@@ -32,7 +31,7 @@ const getCustomerDetails = catchAsync(async (req, res) => {
     // const client = 
     const customer = await shopify.rest.Customer.find({session, id});
     // console.log("printing this", customer )
-    res.send(customer);
+    res.status(200).send(customer);
 });
 
 module.exports = { getOrderDetails, getCustomerDetails }
