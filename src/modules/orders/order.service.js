@@ -2,13 +2,17 @@ const Order = require("./order.model")
 
 
 const createOrder = async (payload) => {
-    const result = await Order.create(payload);
+    const result = await Order.create({
+        order_id: payload.id,
+        ...payload,
+    });
     return result;
 }
 
 
 const updateOrder = async (payload) => {
-    const result = await Order.updateOne({orderId:payload}, payload)
+    const result = await Order.updateOne({ order_id: payload.id }, payload);
+    return result;
 }
 
 const getOrders = async ({ page = 1, pageSize = 10 }) => {

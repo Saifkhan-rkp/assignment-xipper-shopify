@@ -2,13 +2,17 @@ const Customer = require("./customer.model")
 
 
 const createCustomer = async (payload) => {
-    const result = await Customer.create(payload);
+    const result = await Customer.create({
+        ...payload,
+        customer_id:payload.id,
+    });
     return result;
 }
 
 
 const updateCustomer = async (payload) => {
-    const result = await Customer.updateOne({ customerId: payload.customerId }, payload)
+    const result = await Customer.updateOne({ customer_id: payload.id }, payload);
+    return result;
 }
 
 const getCustomers = async ({ page = 1, pageSize = 10 }) => {

@@ -1,29 +1,31 @@
 const mongoose = require('mongoose');
 
 const customerSchema = new mongoose.Schema({
-  id: { type: Number, },
-  email: { type: String, },
-  firstName: { type: String, },
-  lastName: { type: String, },
-  ordersCount: { type: Number, },
-  state: { type: String, },
-  totalSpent: { type: String, },
-  lastOrderId: { type: Number, default: null },
+  customer_id: { type: Number,  },
+  email: { type: String,  },
+  created_at: { type: Date,  },
+  updated_at: { type: Date,  },
+  first_name: { type: String,  },
+  last_name: { type: String,  },
+  orders_count: { type: Number,  },
+  state: { type: String,  },
+  total_spent: { type: String,  },
+  last_order_id: { type: Number, default: null },
   note: { type: String, default: null },
-  verifiedEmail: { type: Boolean, },
-  multipassIdentifier: { type: String, default: null },
-  taxExempt: { type: Boolean, },
+  verified_email: { type: Boolean,  },
+  multipass_identifier: { type: String, default: null },
+  tax_exempt: { type: Boolean,  },
   tags: { type: String, default: null },
-  lastOrderName: { type: String, default: null },
-  currency: { type: String, },
+  last_order_name: { type: String, default: null },
+  currency: { type: String,  },
   phone: { type: String, default: null },
   addresses: { type: [String], default: [] },
-  taxExemptions: { type: [String], default: [] },
-  emailMarketingConsent: { type: String, default: null },
-  smsMarketingConsent: { type: String, default: null },
-  adminGraphqlApiId: { type: String, }
-},{
-    timestamps:true
+  tax_exemptions: { type: [String], default: [] },
+  email_marketing_consent: { type: String, default: null },
+  sms_marketing_consent: { type: String, default: null },
+  admin_graphql_api_id: { type: String,  }
+}, {
+  timestamps: true
 });
 
 

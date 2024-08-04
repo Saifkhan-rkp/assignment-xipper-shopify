@@ -1,14 +1,14 @@
 const { default: mongoose } = require("mongoose");
 
 const addressSchema = new mongoose.Schema({
-    firstName: { type: String, },
+    first_name: { type: String, },
     address1: { type: String, },
     phone: { type: String, },
     city: { type: String, },
     zip: { type: String, },
     province: { type: String, },
     country: { type: String, },
-    lastName: { type: String, },
+    last_name: { type: String, },
     address2: { type: String, default: null },
     company: { type: String, default: null },
     latitude: { type: Number, default: null },
@@ -36,26 +36,40 @@ const shippingLineSchema = new mongoose.Schema({
 });
 
 const OrderSchema = new mongoose.Schema({
-    orderId: { type: Number, unique: true },
-    orderNumber: Number,
-    orderStatus: String,
-    orderDate: Date,
+    order_id: { type: Number, unique: true },
+    order_number: Number,
+    confirmed:Boolean,
+    created_at: Date,
+    updated_at: Date,
+
+    //price related
     currency: String,
-    totalPrice: Number,
-    subtotalPrice: Number,
-    totalDiscounts: Number,
+    total_price: Number,
+    subtotal_price: Number,
+    total_discounts: Number,
     totalShippingPrice: Number,
-    totalTax: Number,
-    financialStatus: String,
-    fulfillmentStatus: String,
-    customerId: Number,
-    customerName: String,
-    customerEmail: String,
-    customerLocale: String,
-    billingAddress: addressSchema,
-    shippingAddress: addressSchema,
-    lineItems: [lineItemSchema],
-    shippingLines: [shippingLineSchema]
+    total_tax: Number,
+
+    financial_status: String,
+    fulfillment_status: String,
+
+    //cancellation
+    cancel_reason:String,
+    cancelled_at:Date,
+
+    //customer details
+    customer:{
+        first_name:String,
+        last_name:String,
+        email:String,
+        id:Number
+    },
+
+    fulfillments:[],
+    billing_address: addressSchema,
+    shipping_address: addressSchema,
+    line_items: [lineItemSchema],
+    shipping_lines: [shippingLineSchema]
 }, {
     timestamps: true
 });
