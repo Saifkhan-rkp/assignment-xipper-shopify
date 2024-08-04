@@ -20,7 +20,10 @@ const getOrders = async ({ page = 1, pageSize = 10 }) => {
     const result = await Order.find({})
         .skip(ordersToSkip)
         .limit(pageSize);
-    return result || [];
+    const totalOrders = await Order.countDocuments();
+    
+    const pages = Math.ceil(totalOrders/pageSize)
+    return {pages, orders: result || []};
 }
 
 const getOrder = async (payload) => {

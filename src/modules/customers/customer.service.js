@@ -4,7 +4,7 @@ const Customer = require("./customer.model")
 const createCustomer = async (payload) => {
     const result = await Customer.create({
         ...payload,
-        customer_id:payload.id,
+        customer_id: payload.id,
     });
     return result;
 }
@@ -20,7 +20,10 @@ const getCustomers = async ({ page = 1, pageSize = 10 }) => {
     const result = await Customer.find({})
         .skip(customersToSkip)
         .limit(pageSize);
-    return result || [];
+    const totalOrders = await Customer.countDocuments();
+
+    const pages = Math.ceil(totalOrders / pageSize)
+    return { pages, customers: result || [] };
 }
 
 const getCustomer = async (payload) => {
