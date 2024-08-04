@@ -1,36 +1,38 @@
-// require('@shopify/shopify-api/adapters/node');
+require('@shopify/shopify-api/adapters/node');
 const { shopifyApi, ApiVersion, } = require("@shopify/shopify-api");
-const Shopify = require("shopify-api-node");
+const { restResources } = require('@shopify/shopify-api/rest/admin/2023-04');
 const catchAsync = require("../../utils/catchAsync");
 
-const shopify = new Shopify({
-    apiKey:process.env.SHOPIFY_API_KEY,
-    // apiVersion:ApiVersion.July24,
-    shopName:"assign-xipper",
-    password:process.env.SHOPIFY_ADMIN_ACCESS_TOKEN, 
-})
 
-// const shopify = new shopifyApi({
-//     apiKey: process.env.SHOPIFY_API_KEY,
-//     apiSecretKey: process.env.SHOPIFY_API_SECRET_KEY,
-//     apiVersion: ApiVersion.July24,
-//     adminApiAccessToken: process.env.SHOPIFY_ADMIN_ACCESS_TOKEN,
-//     hostName: "https://obviously-known-sheepdog.ngrok-free.app",
-//     isCustomStoreApp:true
-// });
+// shopify.apiPermission.delete()
 
+const shopify = shopifyApi({
+    apiKey: process.env.SHOPIFY_API_KEY,
+    apiSecretKey: process.env.SHOPIFY_API_SECRET_KEY,
+    apiVersion: ApiVersion.July24,
+    adminApiAccessToken: process.env.SHOPIFY_ADMIN_ACCESS_TOKEN,
+    hostName: "assign-xipper.myshopify.com",
+    isCustomStoreApp: true,
+    restResources
+});
+
+const session = shopify.session.customAppSession("assign-xipper.myshopify.com");
 
 const getOrderDetails = catchAsync(async (req, res) => {
     const { id } = req.params;
     // const client = 
-    const order = await shopify.order.get(id);
-    console.log(order)
+    const order = await shopify.rest.Order.find({session, id});
+    console.log("printing this", order)
     res.send(order);
-    
 });
 
 const getCustomerDetails = catchAsync(async (req, res) => {
-
+    const { id } = req.params;
+    // const client = 
+    const customer = await shopify.rest.Customer.find({session, id});
+    const customerCount = await shopify.rest.Customer.count({session});
+    console.log("printing this", customer, customerCount)
+    res.send(customer);
 });
 
 module.exports = { getOrderDetails, getCustomerDetails }

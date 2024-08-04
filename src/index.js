@@ -3,7 +3,7 @@ require('dotenv').config();
 require('./utils/db_connection');
 
 const http = require('http');
-const app = require('./App');
+const app = require('./app');
 
 const serevr= http.createServer(app);
 
