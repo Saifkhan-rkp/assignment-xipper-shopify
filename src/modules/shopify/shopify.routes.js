@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { getOrderDetails } = require('./shopifyAPI.controller');
+const { getOrderDetails, getCustomerDetails } = require('./shopifyAPI.controller');
 const webhookRouter = require('./webhook.route');
 
 // ngrok http --domain=obviously-known-sheepdog.ngrok-free.app 80
 
-router.get("/shopify/order/:id", getOrderDetails)
+router.get("/shopify/order/:id", getOrderDetails);
+router.get("/shopify/customer/:id", getCustomerDetails);
 
 router.get("/shopify/test/:data", (req, res) => {
     try {

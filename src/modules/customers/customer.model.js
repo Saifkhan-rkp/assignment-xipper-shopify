@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const customerSchema = new mongoose.Schema({
-  customer_id: { type: Number,  },
-  email: { type: String,  },
+  customer_id: { type: Number, },
+  email: { type: String, unique:true },
   created_at: { type: Date,  },
   updated_at: { type: Date,  },
   first_name: { type: String,  },
@@ -19,10 +19,10 @@ const customerSchema = new mongoose.Schema({
   last_order_name: { type: String, default: null },
   currency: { type: String,  },
   phone: { type: String, default: null },
-  addresses: { type: [String], default: [] },
+  addresses: { type: [Object], default: [] },
   tax_exemptions: { type: [String], default: [] },
-  email_marketing_consent: { type: String, default: null },
-  sms_marketing_consent: { type: String, default: null },
+  email_marketing_consent: { type: Object, default: null },
+  sms_marketing_consent: { type: Object, default: null },
   admin_graphql_api_id: { type: String,  }
 }, {
   timestamps: true
